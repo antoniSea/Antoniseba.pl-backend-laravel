@@ -59,6 +59,13 @@ import { Head, Link } from "@inertiajs/inertia-vue3";
               >
                 Nowy przedmiot w portfolio
               </Link>
+              <Link
+                tabIndex="1"
+                className="mx-4 px-4 py-2 text-sm text-white bg-green-500 rounded mt-8"
+                :href="route('portfolio-type.index')"
+              >
+                Typy portfolio
+              </Link>
             </table>
           </div>
         </div>

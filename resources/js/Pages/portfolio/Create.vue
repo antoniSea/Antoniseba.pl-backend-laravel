@@ -41,7 +41,18 @@ import { Head } from "@inertiajs/inertia-vue3";
 
                 <input
                   type="text"
-                  class="w-96 rounded"
+                  class="
+                    shadow
+                    appearance-none
+                    border
+                    rounded
+                    w-full
+                    py-2
+                    px-3
+                    text-gray-700
+                    leading-tight
+                    focus:outline-none focus:shadow-outline
+                  "
                   v-model="form.title"
                   placeholder="Tytuł"
                 />
@@ -67,7 +78,19 @@ import { Head } from "@inertiajs/inertia-vue3";
                 </div>
 
                 <textarea
-                  class="w-96 mt-4 rounded"
+                  class="
+                    shadow
+                    appearance-none
+                    border
+                    rounded
+                    w-full
+                    py-2
+                    px-3
+                    text-gray-700
+                    leading-tight
+                    focus:outline-none focus:shadow-outline
+                    mt-4
+                  "
                   v-model="form.description"
                   placeholder="opis"
                 >
@@ -93,8 +116,25 @@ import { Head } from "@inertiajs/inertia-vue3";
                   </div>
                 </div>
 
-                <select class="w-96 mt-4 rounded" v-model="form.typeSelected">
-                  <option selected="true" disabled="disabled" value="">-- Wybierz typ --</option>
+                <select
+                  class="
+                    shadow
+                    appearance-none
+                    border
+                    rounded
+                    w-full
+                    py-2
+                    px-3
+                    text-gray-700
+                    leading-tight
+                    focus:outline-none focus:shadow-outline
+                    mt-4
+                  "
+                  v-model="form.typeSelected"
+                >
+                  <option selected="true" disabled="disabled" value="">
+                    -- Wybierz typ --
+                  </option>
                   <option
                     v-for="type in portfolioTypes"
                     :key="type.id"
@@ -127,7 +167,7 @@ import { Head } from "@inertiajs/inertia-vue3";
                 <div class="mt-4">
                   <input
                     type="file"
-                    class="w-96 "
+                    class="w-full"
                     @input="form.photo = $event.target.files[0]"
                   />
                 </div>

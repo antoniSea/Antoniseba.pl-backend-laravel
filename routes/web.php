@@ -6,6 +6,8 @@ use Inertia\Inertia;
 use App\Http\Controllers\TasksController;
 use App\Models\User;
 use App\Http\Controllers\PortfolioItemsController;
+use App\Http\Controllers\PortfolioTypesController;
+use App\Models\PortfolioType;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,4 +35,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/dashboard/portfolio/{id}',  [PortfolioItemsController::class, 'destroy'])->name('portfolio-items.delete');
     Route::get('/dashboard/portfolio/{id}', [PortfolioItemsController::class, 'edit'])->name('portfolio-items.edit');
     Route::put('/dashboard/portfolio/{id}', [PortfolioItemsController::class, 'update'])->name('portfolio-items.update');
+
+    Route::get('/dashboard/portfolio/typ/nowy', [PortfolioTypesController::class, 'create'])->name('portfolio-type.create');
+    Route::post('/dashboard/portfolio/typ/nowy', [PortfolioTypesController::class, 'store'])->name('portfolio-type.store');
+    Route::get('/dashboard/portfolio/typ/lista', [PortfolioTypesController::class, 'index'])->name('portfolio-type.index');
+    Route::delete('/dashboard/portfolio/typ/{id}', [PortfolioTypesController::class, 'destroy'])->name('portfolio-type.delete');
 });
