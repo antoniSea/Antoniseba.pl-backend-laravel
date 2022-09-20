@@ -35,10 +35,16 @@ const showingNavigationDropdown = ref(false);
                 </BreezeNavLink>
               </div>
               <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                <BreezeNavLink
-                  :href="'/log-viewer'"
-                >
+                <BreezeNavLink :href="'/log-viewer'">
                   Przeglądaj logi
+                </BreezeNavLink>
+              </div>
+              <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <BreezeNavLink
+                  :href="route('messages.index')"
+                  :active="route().current('messages.index')"
+                >
+                  Wiadomości
                 </BreezeNavLink>
               </div>
             </div>

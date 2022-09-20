@@ -20,7 +20,7 @@ class PortfolioItemsController extends Controller
 
     public function show ($id) {
         $type = PortfolioType::find($id);
-        $type->items = $item->PortfolioItems()->get();
+        $type->items = $type->PortfolioItems()->get();
 
         return response()->json($type, 200);
     }

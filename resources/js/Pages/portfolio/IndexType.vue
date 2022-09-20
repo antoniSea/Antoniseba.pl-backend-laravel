@@ -24,7 +24,11 @@ import { Head, Link } from "@inertiajs/inertia-vue3";
             >
               <div>{{ type.name }}</div>
               <div>
-                <button class="px-4 py-2 bg-blue-500 rounded">Edytuj</button>
+                <Link
+                  class="px-4 py-2 bg-blue-500 rounded"
+                  :href="route('portfolio-type.show', { id: type.id })"
+                  >Edytuj</Link
+                >
                 <button
                   class="px-4 py-2 bg-red-500 rounded mx-2"
                   @click="deleteItem(type.id)"
