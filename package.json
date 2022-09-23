@@ -17,12 +17,16 @@
         "lodash": "^4.17.19",
         "postcss": "^8.4.16",
         "tailwindcss": "^3.1.8",
+        "video.js": "^7.20.3",
         "vite": "^3.0.0",
         "vue": "^3.2.31"
     },
     "dependencies": {
+        "@vue/compiler-sfc": "^3.2.39",
         "sweetalert": "^2.1.2",
         "sweetalert2": "^11.4.29",
-        "vue-media-upload": "^1.1.4"
+        "vue-media-upload": "^1.1.4",
+        "vue-spinner": "^1.0.4",
+        "vue-videojs7": "^1.0.2"
     }
 }

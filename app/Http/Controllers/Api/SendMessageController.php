@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\contactMailCustomer;
 use App\Models\Message;
+use App\Models\Video;
 
 class SendMessageController extends Controller
 {

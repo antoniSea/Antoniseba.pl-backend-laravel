@@ -56,6 +56,14 @@ return [
             'throw' => false,
         ],
 
+        'thumbnail' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/thumbnail'),
+            'url' => env('APP_URL').'/storage/thumbnail',
+            'visibility' => 'public',
+            'throw' => false,
+        ]        
+
     ],
 
     /*

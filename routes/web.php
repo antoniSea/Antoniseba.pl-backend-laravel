@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\VideoController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -7,8 +8,8 @@ use App\Http\Controllers\TasksController;
 use App\Models\User;
 use App\Http\Controllers\PortfolioItemsController;
 use App\Http\Controllers\PortfolioTypesController;
-use App\Models\PortfolioType;
 use App\Http\Controllers\MessageController;
+use App\Models\Video;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,10 +23,15 @@ use App\Http\Controllers\MessageController;
 */
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+
+    $videos = Video::all();
+
+    return Inertia::render('Dashboard', [
+        'videos' => $videos
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 // routes for vertified users checked by middleware
@@ -43,8 +49,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/dashboard/portfolio/typ/{id}', [PortfolioTypesController::class, 'destroy'])->name('portfolio-type.delete');
     Route::get('/dashboard/portfolio/typ/{id}', [PortfolioTypesController::class, 'show'])->name('portfolio-type.show');
     Route::put('/dashboard/portfolio/typ/{id}', [PortfolioTypesController::class, 'update'])->name('portfolio-type.update');
-    
+
     Route::get('/dashboard/wiadomosci/{id}', [MessageController::class, 'show'])->name('messages.show');
     Route::get('/dashboard/wiadomosci', [MessageController::class, 'index'])->name('messages.index');
     Route::delete('/dashboard/wiadomosci/{id}', [MessageController::class, 'destroy'])->name('messages.delete');
+
+    Route::post('/video-upload', [VideoController::class, 'process_video'])->name('test');
+    Route::get('/video-processing/{id}', [VideoController::class, 'show_video_processing'])->name('video-processing');
+    Route::delete('/video-processing/{id}', [VideoController::class, 'delete'])->name('video.delete');
 });

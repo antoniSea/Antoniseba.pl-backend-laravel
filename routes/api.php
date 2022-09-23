@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\PortfolioItemsController;
 use App\Http\Controllers\Api\SendMessageController;
+use App\Http\Controllers\Api\VideoController;
+use App\Models\Video;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -27,3 +30,6 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::get('/portfolio', [PortfolioItemsController::class, 'index']);
 Route::get('/portfolio/{id}', [PortfolioItemsController::class, 'show']);
 Route::post('/send-message', [SendMessageController::class, 'send_message']);
+
+Route::get('/video/{id}', [VideoController::class, 'show']);
+Route::put('/video/{id}', [VideoController::class, 'update']);

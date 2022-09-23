@@ -8,7 +8,8 @@ use App\Models\Message;
 
 class MessageController extends Controller
 {
-    public function index () {
+    public function index()
+    {
         $messages = Message::all();
 
         return Inertia::render('message/index', [
@@ -16,13 +17,15 @@ class MessageController extends Controller
         ]);
     }
 
-    public function destroy ($id) {
+    public function destroy($id)
+    {
         Message::findorfail($id)->delete();
-        
+
         return redirect()->route('messages.index');
     }
 
-    public function show ($id) {
+    public function show($id)
+    {
         $message = Message::findorfail($id);
 
         return Inertia::render('message/show', [
