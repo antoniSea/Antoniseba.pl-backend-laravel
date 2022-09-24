@@ -85,6 +85,19 @@ export default {
     // if (this.video.progress == 0) {
     //   setTimeout(this.refresh, 200);
     // }
+    Echo.join(`chat`)
+    .here((users) => {
+        //
+    })
+    .joining((user) => {
+        console.log(user.name);
+    })
+    .leaving((user) => {
+        console.log(user.name);
+    })
+    .error((error) => {
+        console.error(error);
+    });
   },
   methods: {
     submit() {
