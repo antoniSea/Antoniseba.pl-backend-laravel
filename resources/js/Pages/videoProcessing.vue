@@ -51,7 +51,7 @@ import { Head } from "@inertiajs/inertia-vue3";
                     type="text"
                     placeholder="Tytuł"
                     v-model="form.title"
-                    @input="syncForm"
+                    @input="syncFormDebounde"
                   />
 
                   <textarea
@@ -62,7 +62,7 @@ import { Head } from "@inertiajs/inertia-vue3";
                       rounded
                       w-full
                       h-32
-                      mt-4
+                      mt-6
                       mx-4
                       text-gray-700
                       leading-tight
@@ -71,7 +71,7 @@ import { Head } from "@inertiajs/inertia-vue3";
                     type="text"
                     placeholder="Opis"
                     v-model="form.description"
-                    @input="syncForm"
+                    @input="syncFormDebounde"
                   />
 
                   <input
@@ -81,7 +81,7 @@ import { Head } from "@inertiajs/inertia-vue3";
                       border
                       rounded
                       w-full
-                      mt-4
+                      mt-6
                       mx-4
                       text-gray-700
                       leading-tight
@@ -90,14 +90,19 @@ import { Head } from "@inertiajs/inertia-vue3";
                     type="text"
                     placeholder="tagi"
                     v-model="form.tags"
-                    @input="syncForm"
+                    @input="syncFormDebounde"
                   />
+
+                  <div class="flex items-center mt-4 mx-4">
+                    <input id="default-checkbox" @input="syncFormDebounde" v-model="form.public" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Czy film ma byc publiczny</label>
+                  </div>
+                  
                 </form>
 
-                <div class="mt-[150px]">
+                <div class="mt-[130px]">
+                  <div class="text-green-500 text-center" v-if="isFromSaved">Zapisano!</div>
                   <sync-loader v-if="syncProcessing" :color="color" :size="sm" />
-                  <!-- <div class="text-green-500 text-center" v-else-if="isFromSaved"> Zapisano! </div> -->
-                  <button class="mx-4 py-2 px-4 bg-green-500 rounded">Zapisz</button>
                 </div>
               </div>
             </div>
@@ -112,6 +117,7 @@ import { Head } from "@inertiajs/inertia-vue3";
 import VideoPlayer from "@/Components/VideoPlayer.vue";
 import { SyncLoader } from 'vue-spinner/dist/vue-spinner.min.js'
 import axios from "axios"
+import { debounce } from 'debounce'
 
 export default {
   components: {
@@ -142,7 +148,8 @@ export default {
       form: this.$inertia.form({
         title: this.video.title,
         description: this.video.description,
-        tags: this.video.tags
+        tags: this.video.tags,
+        public: this.video.public == 0 ? false : true
       }),
       syncProcessing: false,
       isFromSaved: false,
@@ -165,21 +172,32 @@ export default {
       }
     },
     syncForm () {
-
       clearTimeout(this.timeoutId)
 
       this.syncProcessing = true
       this.isFromSaved = false
 
-      axios.put('/api/video/' + this.video.id, this.form).then(() => {
+      let postdata = {
+        title: this.form.title,
+        description: this.form.description,
+        tags: this.form.tags,
+        public: this.form.public
+      }
+
+      postdata.public = !postdata.public
+
+      axios.put('/api/video/' + this.video.id, postdata).then(() => {
         this.syncProcessing = false
         this.isFromSaved = true
       })
 
       this.timeoutId = setTimeout(() => {
         this.isFromSaved = false
-      }, 1200);
-    }
+      }, 3000);
+    },
+    syncFormDebounde: debounce(function () {
+      this.syncForm()
+    }, 500)
   },
   unmounted() {
     clearTimeout(this.refresh);

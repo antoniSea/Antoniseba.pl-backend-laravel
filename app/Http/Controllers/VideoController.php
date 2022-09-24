@@ -22,6 +22,7 @@ class VideoController extends Controller
     $video->name = $name;
     $video->path = asset('/storage/' . $name . '.m3u8');
     $video->progress = 0;
+    $video->public = false;
     $video->save();
 
     VideoProcess::dispatch($path, $name, $video);

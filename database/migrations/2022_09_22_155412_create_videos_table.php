@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->text('description')->nullable();
             $table->string('tags')->nullable();
+            $table->boolean('public');
 
             // thumbnail info
             $table->string('path_thumbnail')->nullable();

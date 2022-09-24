@@ -34,7 +34,7 @@ import { Head, Link } from "@inertiajs/inertia-vue3";
               <tbody>
                 <tr v-for="video in videos" :key="video.id">
                   <td className="border px-4 py-2">{{ video.id }}.</td>
-                  <td className="border px-4 py-2">{{ video.name }}</td>
+                  <td className="border px-4 py-2">{{ video.title }}</td>
                   <td className="border px-4 py-2">
                     <img :src="video.path_thumbnail" style="width: 800px; width: 400px" v-if="video.progress_thumbnail == 100">
                   </td>

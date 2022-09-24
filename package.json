@@ -23,6 +23,7 @@
     },
     "dependencies": {
         "@vue/compiler-sfc": "^3.2.39",
+        "debounce": "^1.2.1",
         "sweetalert": "^2.1.2",
         "sweetalert2": "^11.4.29",
         "vue-media-upload": "^1.1.4",

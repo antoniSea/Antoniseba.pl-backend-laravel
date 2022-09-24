@@ -18,6 +18,7 @@ class VideoController extends Controller
         $Video->title = $request->title;
         $Video->description = $request->description;
         $Video->tags = $request->tags;
+        $Video->public = $request->public;
         $Video->save();
 
         return response($Video);
