@@ -32,4 +32,5 @@ Route::get('/portfolio/{id}', [PortfolioItemsController::class, 'show']);
 Route::post('/send-message', [SendMessageController::class, 'send_message']);
 
 Route::get('/video/{id}', [VideoController::class, 'show']);
-Route::put('/video/{id}', [VideoController::class, 'update']);
+Route::get('/video', [VideoController::class, 'index']);
+Route::put('/video/{id}', [VideoController::class, 'update']);  

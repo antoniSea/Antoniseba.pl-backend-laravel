@@ -10,7 +10,8 @@ class VideoController extends Controller
 {
     public function show (Int $id) {
         $Video = Video::findorfail($id);
-        return $Video;
+
+        return response($Video);
     }
 
     public function update (Int $id, Request $request) {
@@ -21,6 +22,12 @@ class VideoController extends Controller
         $Video->public = $request->public;
         $Video->save();
 
+        return response($Video);
+    }
+
+    public function index () {
+        $Video = Video::paginate(5);
+        
         return response($Video);
     }
 }
